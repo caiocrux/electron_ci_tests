@@ -1,0 +1,14 @@
+version: '3'
+services:
+    electron:
+        build:
+            dockerfile: Dockerfile
+            context: .
+        image: caiocrux/electron_gui
+        container_name: electron_app
+        environment:
+                - DISPLAY=$DISPLAY
+        volumes:
+                - /tmp/.X11-unix:/tmp/.X11-unix
+                - $HOME/.Xauthority:/home/caio/.Xauthority  
+
