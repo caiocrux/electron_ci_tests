@@ -2,12 +2,28 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>First App</title>
+    <title>Sample Timer</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <h1>Olá Mundo</h1>
-    <a href="#" id="link-about">about</a>
-    <script src="js/renderer.js"> </script>
+    <section class="container">
+        <div id="link-about">
+            <img class="info-button" src="img/info-button.svg">
+        </div>
+        <h1 class="titulo">Sample Timer</h1>
+        <div class="timer">
+            <div class="relogio">
+                <span class="tempo">00:00:00</span>
+            </div><!--
+            --><div class='controles'>
+                <img class="botao-play" src="img/play-button.svg">
+            </div>
+            <div class="curso-container">
+                <span class="curso"> Electron </span>
+            </div>
+        </div>
+
+    </section>
+    <script>require('./js/renderer')</script>
 </body>
 </html>
