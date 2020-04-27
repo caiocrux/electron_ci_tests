@@ -1,10 +1,6 @@
 const { ipcRenderer } = require('electron');
 const timer = require('./timer');
-const {MongoClient} = require('mongodb');
 
-const uri = "mongodb://electron_mongodb:27017/electron_db";
-
-const client = new MongoClient(uri,{ useNewUrlParser: true, useUnifiedTopology: true });
 console.log("im in a browser screen");
 
 let linkSobre = document.querySelector('#link-about');
@@ -15,7 +11,6 @@ let name = document.querySelector('.curso');
 linkSobre.addEventListener('click',function(){
 	ipcRenderer.send('open-window-about');
 });
-
 
 let imgs = ['img/play-button.svg', 'img/stop-button.svg'];
 let play = false;
