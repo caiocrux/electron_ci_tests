@@ -1,6 +1,6 @@
 {
-  "name": "alura",
-  "version": "1.0.0",
+  "name": "pomodoro",
+  "version": "1.0.1",
   "description": "",
   "main": "main.js",
   "scripts": {
@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "electron": "^1.6.1",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "mongodb": "^3.5.6"
   }
 }
