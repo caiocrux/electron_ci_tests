@@ -14,5 +14,8 @@ ENV HOME /home/caio
 #RUN mkdir app
 COPY . /home/caio
 WORKDIR /home/caio
+USER root
+RUN  chmod -R 777 /home/caio
+USER caio
 RUN npm install
 CMD npm start

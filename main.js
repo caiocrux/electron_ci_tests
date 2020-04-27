@@ -1,8 +1,12 @@
 const { ipcMain} = require('electron') 
 const { app } = require('electron');
 const { BrowserWindow } = require('electron')
+const mongoClient = require('./app/js/database')
 
-app.on('ready',() => {
+
+app.on('ready', async () => {
+	console.log(" ## Start database");
+	await mongoClient.connect();
 	console.log(" ## Start application");
 	let mainWindow = new BrowserWindow({
 		width: 600,
@@ -38,6 +42,10 @@ ipcMain.on ('close-window-about', () => {
 	aboutWindow.close();
 });
 
-ipcMain.on('timer-stop',(event, name, timecount) => {
-    console.log(`O curso ${name} foi estudado por ${timecount}`);
+ipcMain.on('timer-stop', async (event, name, timecount) => {
+	console.log(`O curso ${name} foi estudado por ${timecount}`);
+
+	const client = mongoClient.getConnection();
+	const timerCollection = client.db('pomodoro').collection('timer');
+	timerCollection.insertOne({course: name, timer: timecount});
 });
