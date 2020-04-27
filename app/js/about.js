@@ -17,6 +17,6 @@ linkClose.addEventListener('click', function () {
 
 
 linkTwitter.addEventListener('click', function () {
-	shell.openExternal("https://www.twitter.com/caiocrux");
+	shell.openExternal("https://www.google.com");
 })
 
