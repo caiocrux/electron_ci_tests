@@ -3,10 +3,10 @@ const { app } = require('electron');
 const { BrowserWindow } = require('electron')
 
 app.on('ready',() => {
-	console.log("Start application");
+	console.log(" ## Start application");
 	let mainWindow = new BrowserWindow({
-		width: 800,
-		height: 600
+		width: 600,
+		height: 350
 	});
 	//mainWindow.loadURL('https://www.google.com');
 	mainWindow.loadURL(`file://${__dirname}/app/index.html`);
@@ -21,7 +21,7 @@ let aboutWindow = null;
 ipcMain.on('open-window-about', () => {
 	if(aboutWindow == null) {
 		aboutWindow = new BrowserWindow({
-			width:300,
+			width:200,
 			height: 200,
 			alwaysOnTop: true,
 			frame: false
@@ -34,6 +34,10 @@ ipcMain.on('open-window-about', () => {
 });
 
 ipcMain.on ('close-window-about', () => {
-	console.log("closed window");
+	console.log("### closed window");
 	aboutWindow.close();
+});
+
+ipcMain.on('timer-stop',(event, name, timecount) => {
+    console.log(`O curso ${name} foi estudado por ${timecount}`);
 });
