@@ -10,5 +10,27 @@ services:
                 - DISPLAY=$DISPLAY
         volumes:
                 - /tmp/.X11-unix:/tmp/.X11-unix
-                  # - $HOME/.Xauthority:$HOME/.Xauthority  
+                - $HOME/.Xauthority:$HOME/.Xauthority
+                - .:/home/caio
+        depends_on:
+                - "mongodb"
+    mongodb:
+        image: mongo
+        container_name: electron_mongodb
+        ports:
+                - '27017-27019:27017-27019'
+    mongo-express:
+        image: mongo-express
+        ports:
+                - 8081:8081
+        environment:
+                ME_CONFIG_MONGODB_SERVER: electron_mongodb
+                ME_CONFIG_BASICAUTH_USERNAME: admin
+                ME_CONFIG_BASICAUTH_PASSWORD: 123pipoca
+                ME_CONFIG_MONGODB_PORT: 27017
+                ME_CONFIG_MONGODB_ADMINUSERNAME: ''
+                ME_CONFIG_MONGODB_ADMINPASSWORD: ''
+        depends_on:
+                - "mongodb"
+
 
