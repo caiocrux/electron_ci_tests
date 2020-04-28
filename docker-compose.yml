@@ -11,7 +11,9 @@ services:
         volumes:
                 - /tmp/.X11-unix:/tmp/.X11-unix
                 - $HOME/.Xauthority:$HOME/.Xauthority
-                - .:/home/caio
+                  # TODO: try to find a better solution 
+                  # uncomment this line to uso in develoment mode
+                  #- .:/home/ubuntu
         depends_on:
                 - "mongodb"
     mongodb:
