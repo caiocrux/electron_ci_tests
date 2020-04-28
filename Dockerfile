@@ -1,21 +1,26 @@
 FROM ubuntu:20.04
 
-RUN apt-get update
-RUN apt-get install -y nodejs
-RUN apt-get install -y npm
-RUN apt-get install -y libgtk2.0-0
-RUN apt-get install -y libxss1 libgconf-2-4 libnss3-dev libasound2 firefox
-#RUN npm install electron@1.6.1 --save
-#RUN npm install mongodb --save
-RUN groupadd -g 1000 caio
-RUN useradd -d /home/caio -s /bin/bash -m caio -u 1000 -g 1000
-USER caio
-ENV HOME /home/caio
-#RUN mkdir app
-COPY . /home/caio
-WORKDIR /home/caio
-USER root
-RUN  chmod -R 777 /home/caio
-USER caio
+RUN export DEBIAN_FRONTEND=noninteractive && \
+apt-get update && apt-get install -y \
+nodejs \
+npm \
+libgtk2.0-0 \ 
+libxss1 \ 
+libgconf-2-4 \
+libnss3-dev \
+libasound2 \
+firefox -y && \
+apt-get clean && \
+rm -rf /var/lib/apt/lists/*
+
+RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 ubuntu
+
+USER ubuntu
+
+COPY . /home/ubuntu
+
+WORKDIR /home/ubuntu
+
 RUN npm install
+
 CMD npm start
