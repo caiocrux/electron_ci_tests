@@ -20,7 +20,7 @@ First, it is necessary to install docker and docker compose.
 
 To install docker in ubuntu, you can do these steps:
 
-* sudo apt install docker-ce
+* sudo apt install docker.io
 * sudo usermod -aG docker $(whoami)
 * sudo apt install docker-compose
 
